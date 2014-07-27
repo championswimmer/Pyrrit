@@ -4,6 +4,7 @@ import utils
 
 __author__ = 'arnav'
 
+
 def print_help():
     print("Usage : pyrrit [mode [parameters]]")
     print("Where mode can be \n")
@@ -12,7 +13,8 @@ def print_help():
     print("pull [ps#]              - Pull the given patchset(s)")
     print("pstest [ps#] [device]   - Pull the given patchset(s), and make a build for device to test")
 
-if len(sys.argv) < 2 :
+
+if len(sys.argv) < 2:
     print_help()
 else:
     if sys.argv[1] == "help":
@@ -23,6 +25,7 @@ else:
 
     if sys.argv[1] == "list":
         import listchanges
+
         print("Listing changes from " + listchanges.url)
         listchanges.show_all_list()
 
