@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PyrritProject.iml" filepath="$PROJECT_DIR$/PyrritProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pyrrit/pyrrit.iml" filepath="$PROJECT_DIR$/pyrrit/pyrrit.iml" />
     </modules>
   </component>
 </project>
