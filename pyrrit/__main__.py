@@ -9,10 +9,13 @@ __author__ = 'arnav'
 def print_help():
     print("Usage : pyrrit [mode [parameters]]")
     print("Where mode can be \n")
-    print("list [project]          - Show all recent patches on this project")
+    print("list [dirpath]          - Show all open patches [for given directory path]")
     print("upload")
-    print("pull [ps#]              - Pull the given patchset(s)")
-    print("pstest [ps#] [device]   - Pull the given patchset(s), and make a build for device to test")
+    print("pull ps#                - Pull the given patchset(s)")
+    print("pstest ps# device       - Pull the given patchset(s), and make a build for device to test")
+    print("\n")
+    print("Some example commands\n")
+    print("pyrrit list device/sony/common")
 
 
 if __name__ == '__main__':
