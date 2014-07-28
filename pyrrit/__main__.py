@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 import sys
-import utils
+
 import listchanges
+
 
 __author__ = 'arnav'
 
@@ -21,10 +22,10 @@ def print_help():
 if __name__ == '__main__':
     if len(sys.argv) < 2:
         print_help()
-    
+
     elif sys.argv[1] == "help":
         print_help()
-    
+
     elif sys.argv[1] == "pull":
         print("pull")
         ##TODO: write pull funciton
