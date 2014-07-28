@@ -16,11 +16,14 @@ col_0 = '\033[0m'
 
 
 def show_all_list():
-    resp_str = os.popen("curl " + url).read()
-    # ugly hack because python refuses to get the full response
-    resp_str = resp_str.replace(resp_str[:4], '')
+    resp_str = requests.get(url).text
     #ugly hack because gerrit's json has 4 stupid characters in the first line
+    resp_str = resp_str.replace(resp_str[:4], '')
     json_data = json.loads(resp_str)
     for item in json_data:
         print(col_y + str(item.get('_number')) + col_0 + "\t" + item.get('subject'))
         print("  " + col_g + item.get('project') + col_0 + "\n")
+
+
+if __name__ == '__main__':
+	show_all_list()
