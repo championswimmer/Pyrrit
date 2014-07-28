@@ -1,19 +1,13 @@
 import json
-
 import requests
-
-import constants
+import config
 import utils
 
+from utils import Col
 
 __author__ = 'arnav'
 
-l_url = "http://" + constants.g_url + "/changes/?q=status:open"
-
-col_y = '\033[93m'
-col_p = '\033[95m'
-col_g = '\033[92m'
-col_0 = '\033[0m'
+l_url = "http://" + config.g_url + "/changes/?q=status:open"
 
 
 def show_list(url):
@@ -24,8 +18,8 @@ def show_list(url):
 
     json_data = json.loads(resp_str)
     for item in json_data:
-        print(col_y + str(item.get('_number')) + col_0 + "\t" + item.get('subject'))
-        print("  " + col_g + item.get('project') + col_0 + "\n")
+        print(Col.ylw + str(item.get('_number')) + Col.rst + "\t" + item.get('subject'))
+        print("  " + Col.grn + item.get('project') + Col.rst + "\n")
 
 
 def show_all_list():
