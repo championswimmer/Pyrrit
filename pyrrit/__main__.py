@@ -27,8 +27,10 @@ if __name__ == '__main__':
         ##TODO: write pull funciton
 
     elif sys.argv[1] == "list":
-        print("Listing changes from " + listchanges.url)
-        listchanges.show_all_list()
+        if len(sys.argv) == 3:
+            listchanges.show_proj_list(sys.argv[2])
+        else:
+            listchanges.show_all_list()
 
     elif sys.argv[1] == "upload":
         print("upload")
