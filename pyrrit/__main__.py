@@ -8,26 +8,32 @@ import pullchange
 __author__ = 'arnav'
 
 
-def print_help():
+def print_help(extended):
     print("Usage : pyrrit [mode [parameters]]")
     print("Where mode can be \n")
     print("list [dirpath]          - Show all open patches [for given directory path]")
     print("upload")
     print("pull ps#                - Pull the given patchset(s)")
     print("pstest ps# device       - Pull the given patchset(s), and make a build for device to test")
-    print("\n")
-    print("Some example commands\n")
-    print("pyrrit list device/sony/common")
-    print("pyrrit pull 17223 17224 17276")
-    print("\n")
+    print("help                    - Show extended help")
+    if extended:
+        print("\n")
+        print("Some example commands\n")
+        print("pyrrit list                           - List all open changes on gerrit")
+        print("pyrrit list device/sony/common        - List open changes that can be pulled to device/sony/common")
+        print("\n")
+        print("pyrrit pull 17223 17224 17276         - Pull these changes to their respective projects")
+        print("pyrrit pull 17223/2 17224/1           - Same as above, but also specifying revision number")
+        print("pyrrit pull 17712/                    - An open ended / will ask user input for revision number")
+        print("\n")
 
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
-        print_help()
+        print_help(False)
 
     elif sys.argv[1] == "help":
-        print_help()
+        print_help(True)
 
     elif sys.argv[1] == "pull":
         if len(sys.argv) >= 3:
@@ -48,5 +54,5 @@ if __name__ == '__main__':
 
     else:
         print("Bad argument passed")
-        print_help()
+        print_help(False)
 

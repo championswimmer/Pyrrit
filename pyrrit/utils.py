@@ -1,4 +1,5 @@
 import json
+import re
 
 import requests
 
@@ -36,3 +37,28 @@ def get_json_from_url(url):
     resp_str = resp_str.replace(resp_str[:4], '')
 
     return json.loads(resp_str)
+
+
+def segmentise_change_no(raw_change_no):
+    rcn = str(raw_change_no)
+    change_component_list = []
+    re1='(\\d+)'
+    re2='(\\/)'
+    re3='(\\d+)'
+
+    regex_change_slash_rev = re.compile(re1 + re2 + re3)
+    regex_change_slash = re.compile(re1 + re2)
+    regex_change = re.compile(re1)
+
+    if regex_change_slash_rev.match(rcn):
+        rcn = rcn.split('/', 1)
+        change_component_list.append(rcn[0])
+        change_component_list.append(rcn[1])
+    elif regex_change_slash.match(rcn):
+        change_component_list.append(rcn)
+        change_component_list.append(-1)
+    elif regex_change.match(rcn):
+        change_component_list.append(rcn)
+        change_component_list.append(0)
+
+    return change_component_list
