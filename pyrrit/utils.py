@@ -1,11 +1,14 @@
 import json
+
 import requests
+
 import config
+
 
 __author__ = 'arnav'
 
 
-#Console colsor constants
+# Console colsor constants
 class Col:
     ylw = '\033[93m'
     pnk = '\033[95m'

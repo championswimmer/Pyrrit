@@ -1,10 +1,9 @@
-import json
 import os
-import sys
-from pyatspi import value
+
 import config
 import utils
 from utils import Col
+
 
 __author__ = 'arnav'
 
