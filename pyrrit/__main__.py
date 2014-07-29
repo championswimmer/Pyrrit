@@ -28,8 +28,9 @@ if __name__ == '__main__':
         print_help()
 
     elif sys.argv[1] == "pull":
-        if len(sys.argv) == 3:
-            pullchange.pull_one_change(sys.argv[2])
+        if len(sys.argv) >= 3:
+            changes = sys.argv[2:]
+            pullchange.pull_changes(changes)
         else:
             print('Please mention the change # of patch you want to pull')
 

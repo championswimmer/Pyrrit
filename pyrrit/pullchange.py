@@ -37,7 +37,6 @@ def cherry_pick_change(proj_name, url, ref):
     fetch_command = "git fetch " + url + " " + ref
     cherrypick_command = "git cherry-pick FETCH_HEAD"
 
-
     os.system(cd_command + " && " + fetch_command + " && " + cherrypick_command)
 
 
@@ -55,3 +54,8 @@ def pull_one_change(change_no):
         rev_urls.append(json_data["revisions"][revision]['fetch']['anonymous http']['url'])
     rev_index = select_rev_index(rev_numbers)
     cherry_pick_change(proj_name, rev_urls[rev_index], rev_branches[rev_index])
+
+
+def pull_changes(change_nos):
+    for change_no in change_nos:
+        pull_one_change(change_no)
