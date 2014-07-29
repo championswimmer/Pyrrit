@@ -8,7 +8,7 @@ from utils import Col
 __author__ = 'arnav'
 
 p_url = "http://" + config.g_url + "/changes/"
-top_dir = os.environ['T']
+top_dir = os.environ['ANDROID_BUILD_TOP']
 
 
 def select_rev_index(rev_numbers, given_rev_no):
