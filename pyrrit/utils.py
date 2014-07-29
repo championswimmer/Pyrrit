@@ -1,7 +1,7 @@
 import json
 import re
 
-import requests
+import urllib2
 
 import config
 
@@ -31,7 +31,9 @@ def change_projname_to_dirpath(projname):
 
 
 def get_json_from_url(url):
-    resp_str = requests.get(url).text
+    response = urllib2.urlopen(url)
+    resp_str = response.read()
+    response.close()
 
     # ugly hack because gerrit's json has 4 stupid characters in the first line
     resp_str = resp_str.replace(resp_str[:4], '')
