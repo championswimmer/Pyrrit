@@ -11,12 +11,7 @@ l_url = "http://" + config.g_url + "/changes/?q=status:open"
 
 
 def show_list(url):
-    resp_str = requests.get(url).text
-
-    # ugly hack because gerrit's json has 4 stupid characters in the first line
-    resp_str = resp_str.replace(resp_str[:4], '')
-
-    json_data = json.loads(resp_str)
+    json_data = utils.get_json_from_url(url)
     for item in json_data:
         print(Col.ylw + str(item.get('_number')) + Col.rst + "\t" + item.get('subject'))
         print("  " + Col.grn + item.get('project') + Col.rst + "\n")

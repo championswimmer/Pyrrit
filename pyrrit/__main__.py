@@ -2,6 +2,7 @@
 import sys
 
 import listchanges
+import pullchange
 
 
 __author__ = 'arnav'
@@ -27,8 +28,10 @@ if __name__ == '__main__':
         print_help()
 
     elif sys.argv[1] == "pull":
-        print("pull")
-        ##TODO: write pull funciton
+        if len(sys.argv) == 3:
+            pullchange.pull_one_change(sys.argv[2])
+        else:
+            print('Please mention the change # of patch you want to pull')
 
     elif sys.argv[1] == "list":
         if len(sys.argv) == 3:
