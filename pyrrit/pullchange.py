@@ -4,6 +4,7 @@ import sys
 from pyatspi import value
 import config
 import utils
+from utils import Col
 
 __author__ = 'arnav'
 
@@ -30,8 +31,7 @@ def select_rev_index(rev_numbers):
     return rev_numbers.index(sel_rev)
 
 
-def cherry_pick_change(proj_name, url, ref):
-    dir_path = utils.change_projname_to_dirpath(proj_name)
+def cherry_pick_change(dir_path, url, ref):
     cd_command = "cd " + top_dir + "/" + dir_path
 
     fetch_command = "git fetch " + url + " " + ref
@@ -44,6 +44,11 @@ def pull_one_change(change_no):
     url = p_url + change_no + "?o=ALL_REVISIONS"
     json_data = utils.get_json_from_url(url)
     proj_name = json_data.get('project')
+    change_sub = json_data.get('subject')
+    dir_path = utils.change_projname_to_dirpath(proj_name)
+    print("Pulling change . . . ")
+    print(Col.ylw + str(change_no) + "\t" + Col.grn + change_sub + Col.rst)
+    print("   onto directory " + Col.pnk + dir_path + Col.rst)
     rev_numbers = []
     rev_branches = []
     rev_urls = []
@@ -53,7 +58,7 @@ def pull_one_change(change_no):
         rev_branches.append(json_data["revisions"][revision]['fetch']['anonymous http']['ref'])
         rev_urls.append(json_data["revisions"][revision]['fetch']['anonymous http']['url'])
     rev_index = select_rev_index(rev_numbers)
-    cherry_pick_change(proj_name, rev_urls[rev_index], rev_branches[rev_index])
+    cherry_pick_change(dir_path, rev_urls[rev_index], rev_branches[rev_index])
 
 
 def pull_changes(change_nos):
