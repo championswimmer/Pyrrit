@@ -42,9 +42,9 @@ def get_json_from_url(url):
 def segmentise_change_no(raw_change_no):
     rcn = str(raw_change_no)
     change_component_list = []
-    re1='(\\d+)'
-    re2='(\\/)'
-    re3='(\\d+)'
+    re1 = '(\\d+)'
+    re2 = '(\\/)'
+    re3 = '(\\d+)'
 
     regex_change_slash_rev = re.compile(re1 + re2 + re3)
     regex_change_slash = re.compile(re1 + re2)
