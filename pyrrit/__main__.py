@@ -18,6 +18,8 @@ def print_help():
     print("\n")
     print("Some example commands\n")
     print("pyrrit list device/sony/common")
+    print("pyrrit pull 17223 17224 17276")
+    print("\n")
 
 
 if __name__ == '__main__':
