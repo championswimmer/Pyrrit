@@ -11,6 +11,25 @@ p_url = "http://" + config.g_url + "/changes/"
 top_dir = os.environ['T']
 
 
+def select_rev_index(rev_numbers):
+    max_rev = 0
+
+    for rev in rev_numbers:
+        if rev > max_rev:
+            max_rev = rev
+
+    print("Which revision of the change would you like to pull? [" + str(max_rev) + "] :")
+    try:
+        sel_rev = int(input())
+    except:
+        sel_rev = max_rev
+
+    if not sel_rev in rev_numbers:
+        sel_rev = max_rev
+
+    return rev_numbers.index(sel_rev)
+
+
 def cherry_pick_change(proj_name, url, ref):
     dir_path = utils.change_projname_to_dirpath(proj_name)
     cd_command = "cd " + top_dir + "/" + dir_path
@@ -34,5 +53,5 @@ def pull_one_change(change_no):
         rev_numbers.append(json_data["revisions"][revision].get("_number"))
         rev_branches.append(json_data["revisions"][revision]['fetch']['anonymous http']['ref'])
         rev_urls.append(json_data["revisions"][revision]['fetch']['anonymous http']['url'])
-    rev = len(rev_numbers) - 1
-    cherry_pick_change(proj_name, rev_urls[rev], rev_branches[rev])
+    rev_index = select_rev_index(rev_numbers)
+    cherry_pick_change(proj_name, rev_urls[rev_index], rev_branches[rev_index])
