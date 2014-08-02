@@ -79,3 +79,9 @@ Also if you leave the revision empty like this
 
     pyrrit pull 17723/
 In that case pyrrit will ask you for revision number when pulling that change
+
+### Pulling a topic
+pyrrit can pull all changes of a particular topic using a command like this
+
+    pyrrit topicpull topic_name
+This pulls all changes (in all projects and directories) that have "topic_name" as their topic. 
